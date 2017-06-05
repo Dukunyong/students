@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="960" height="270"></canvas>
+	</body>
+</html>
+<script type="text/javascript">
+	class DeawImg{
+		constructor(ele,imgSrcs){
+			this.canvas=ele;
+			this.ctx=this.canvas.getContext("2d");
+			this.imgSrcs=imgSrcs;
+			
+		};
+		init(){
+			this.drawImage();
+		};
+		
+		drawImage(){
+			var this_ = this;
+			this.imgSrcs.forEach(function (item,index) {
+				var img = new Image();
+				img.src=item;
+				img.onload = function(){
+					this_.ctx.drawImage(img,480*index,0,480,270);
+				}
+			})
+		}
+	}
+	
+	var canvas=document.getElementById("canvas");
+	var imgSrcs=["images/img01.jpg","images/img2.jpg"]
+	var deawImg=new DeawImg(canvas,imgSrcs);
+	deawImg.init()
+</script>
