@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> 宝马 图片 </title>
+	</head>
+<body>
+<canvas id="myCanvas" width="500" height="500" style="border:2px solid #d3d3d3;">
+
+</canvas>
+
+<script>
+
+var c = document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+
+//外圆
+
+ctx.arc(250,250,100,0,2*Math.PI);
+ctx.fillStyle = "gainsboro";
+ctx.stroke();
+ctx.fill();
+ctx.closePath();
+
+//圆2
+ctx.beginPath();
+ctx.arc(250,250,90,0,2*Math.PI);
+ctx.fillStyle = "black";
+ctx.font="20px Georgia";
+ctx.fill();
+ctx.stroke();
+
+
+ctx.closePath();
+ctx.fillText(" B ",220,160);
+ctx.fillText(" M ",240,160);
+ctx.fillText(" W ",260,160);
+ctx.fill();
+
+
+ctx.rect(200,200,3,20);
+ctx.fill();
+
+
+//  0-90
+ctx.beginPath();
+ctx.arc(250,250,60,0,Math.PI/2);
+ctx.fillStyle = "lightskyblue";
+ctx.lineTo(250,250);
+ctx.lineTo(310,250);
+ctx.stroke();
+ctx.closePath();
+ctx.fill();
+
+
+//90-180
+ctx.beginPath();
+ctx.arc(250,250,60,Math.PI/2,Math.PI);
+ctx.fillStyle = "white";
+ctx.lineTo(250,250);
+ctx.lineTo(250,310);
+ctx.stroke();
+ctx.closePath();
+ctx.fill();
+
+//180-270
+ctx.beginPath();
+ctx.arc(250,250,60,Math.PI,Math.PI*3/2);
+ctx.fillStyle = "lightskyblue";
+ctx.lineTo(250,250);
+ctx.lineTo(190,250);
+ctx.stroke();
+ctx.closePath();
+ctx.fill();
+
+//270-0
+ctx.beginPath();
+ctx.arc(250,250,60,Math.PI*3/2,0);
+ctx.fillStyle = "white";
+ctx.lineTo(250,250);
+ctx.lineTo(250,190);
+
+ctx.stroke();
+ctx.closePath();
+ctx.fill();
+
+</script> 
+
+</body>
+</html>
+
