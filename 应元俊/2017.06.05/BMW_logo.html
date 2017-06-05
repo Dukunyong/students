@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="500" height="500"></canvas>
+	</body>
+</html>
+<script type="text/javascript">
+	class BMW{
+		constructor(ele){
+			this.canvas=ele;
+			this.ctx=this.canvas.getContext("2d");
+		};
+		
+		init(){
+			this.circles();
+			this.fanshaped();
+			this.words();
+			
+		};
+		//画圈
+		circles(){
+			this.ctx.arc(250,250,250,0,Math.PI*2);
+			this.ctx.stroke();
+			this.ctx.beginPath();
+			this.ctx.arc(250,250,238,0,Math.PI*2);
+			this.ctx.fillStyle="black"
+			this.ctx.fill();
+			this.ctx.beginPath();
+			this.ctx.arc(250,250,156,0,Math.PI*2);
+			this.ctx.fillStyle="white";
+			this.ctx.fill();
+			
+		};
+		
+		//扇形
+		fanshaped(){
+			this.ctx.beginPath();
+			this.ctx.fillStyle="#2657f2";
+			this.ctx.moveTo(250,250)
+			this.ctx.arc(250,250,150,0,Math.PI*0.5);
+			this.ctx.fill();
+			this.ctx.beginPath();
+			this.ctx.moveTo(250,250)
+			this.ctx.arc(250,250,150,Math.PI,Math.PI*1.5);
+			this.ctx.fill();
+			
+		};
+		
+		//文字
+		words(){
+			this.ctx.save();
+			this.ctx.beginPath();
+			this.ctx.fillStyle="white";
+			this.ctx.font="100px Arial";
+			this.ctx.translate(250, 250);
+			this.ctx.rotate(Math.PI*1.5);
+			var arr=["B","M","W"];
+			arr.forEach(function (item) {
+			this.ctx.rotate(Math.PI*0.25);
+				this.ctx.fillText(item,-45,-160);
+			}.bind(this))
+			this.ctx.restore();
+			
+		}
+	}
+	var canvas=document.getElementById("canvas");
+	var BMWlogo=new BMW(canvas);
+	BMWlogo.init();
+</script>
