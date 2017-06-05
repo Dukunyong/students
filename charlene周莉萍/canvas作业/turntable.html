@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#btn{
+				position: absolute;
+				width: 150px;
+				height: 150px;
+				border-radius: 50%;
+				top: 301px;
+				left: 254px;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				font-size: 25px;
+				color: red;
+				background:#eee;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="880" style="background: #db2404;"></canvas>
+		<input type="button" name="btn" id="btn" value="开始抽奖" />
+		<script src="turntable.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var turnTableElem = document.getElementById("canvas");
+			var turntable = new Turntable(turnTableElem);
+			turntable.init();
+		</script>
+	</body>
+</html>
