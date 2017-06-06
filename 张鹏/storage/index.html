@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="">
+		<label>user:<input type="text" name="user" class="js-user">	</label>
+		<label>phone:<input type="text" name="phone" class="js-iphone"></label>
+		<input type="submit" value="提交" class="js-submit">
+	</form>
+	<button class="js-clear">清空</button>
+
+	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<script>
+		function Page() {
+
+		}
+		$.extend(Page.prototype, {
+			init: function() {
+				this.restoreUserInfo();
+				this.bindEvents();
+
+			},
+
+			restoreUserInfo: function() {
+				try {
+					if(window.localStorage) {
+						if(window.localStorage.userInfo) {
+							var userInfo = JSON.parse(window.localStorage.userInfo);
+							$(".js-user").val(userInfo.user);
+						
+							$(".js-iphone").val(userInfo.phone);
+						}
+						
+
+					}
+					//console.log(window.localStorage)
+				} catch(e) {
+					console.log(11)
+				}
+			},
+
+			bindEvents: function() {
+				var submitBtn=$(".js-submit"),
+					clearBtn=$(".js-clear");
+				submitBtn.on("click", $.proxy(this.handleSubmitClick, this) );
+				clearBtn.on("click", $.proxy(this.handleClearClick,this) );
+			},
+
+			handleClearClick: function() {
+				try {
+					if (window.localStorage) {
+						window.localStorage.clear();
+					}
+				}catch(e){}
+			},
+
+			handleSubmitClick: function() {
+				//console.log($(".js-user").val(),$(".js-iphone").val());
+					var userInfo = {
+						user: $(".js-user").val(),
+						phone: $(".js-iphone").val()
+					};
+
+					userInfo= JSON.stringify(userInfo);
+					//console.log(userInfo)
+					
+					try {
+						if(window.localStorage) {
+							window.localStorage.userInfo=userInfo;
+						}
+					} catch(e) {}
+
+			}
+		});
+		var page=new Page();
+		page.init();
+
+	</script>
+</body>
+</html>
