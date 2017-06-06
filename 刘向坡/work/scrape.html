@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+	#scrape{
+		background: url(img/scrape.bmp);
+	}
+</style>
+</head>
+<body>
+	<canvas width="500" height="200" id="scrape"></canvas>
+</body>
+</html>
+<script type="text/javascript" src="scrape.js"></script>
+<script type="text/javascript">
+	var scrape=document.getElementById("scrape");
+	var canvas=new Canvas(scrape);
+	canvas.init();
+</script>

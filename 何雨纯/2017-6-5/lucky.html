@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lucky</title>
+</head>
+<body>
+	<canvas width="500" height="500" id="canvas"></canvas>
+	<input type="button" id="btn" value="开始">
+	<script src="lucky.js"></script>
+	<script>
+		var canvasElem=document.getElementById("canvas");
+		var Btn=document.getElementById("btn");
+		var lucky=new Lucky(canvasElem);	
+		lucky.init(i);
+		var i=0;		
+		Btn.onclick=function(){			
+			var timer=setInterval(function(){
+				i++;
+				if(i==360){
+					i=0;
+				};
+				lucky.init(i);
+			},20);
+			setTimeout(function(){
+				clearInterval(timer);
+			},2000)
+		} 
+	</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	#box1{
+		position: absolute;
+		width:200px;
+		height:100px;
+		text-align: center;
+		line-height: 100px;
+	}
+	#box{
+		position:relative;
+		width:200px;
+		height:100px;
+	}
+	#canvas{position: absolute;}
+</style>
+<body>
+	<div id="box">
+		<div id="box1"></div>
+		<canvas width="200" height="100" id="canvas"></canvas>
+	</div>
+	<script src="guagua.js"></script>
+	<script>
+		var canvasElem=document.getElementById("canvas");
+		var canvas=new Canvas(canvasElem);
+		canvas.init();
+		var divs=document.getElementById("box1");
+		var div=document.getElementById("box");
+		var arr=["一等奖","二等奖","三等奖","谢谢惠顾","谢谢惠顾","谢谢惠顾","谢谢惠顾","谢谢惠顾","谢谢惠顾","谢谢惠顾"];
+		div.onmouseenter=function(){
+			var i=parseInt(Math.random()*10);
+			divs.innerHTML=arr[i]
+		}
+	</script>
+</body>
+</html>
