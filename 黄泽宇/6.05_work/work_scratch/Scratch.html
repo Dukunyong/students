@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		
+		#canvas {
+			background: url(timg.jpg);
+		}
+	</style>
+</head>
+<body>
+		<canvas id="canvas" width="243" height="250"></canvas>
+	<script>
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext("2d");
+
+		context.fillStyle = "#ccc";  
+		//与destination-out实现擦除效果  
+		context.beginPath();  
+		context.fillRect(20,160,200,75);  
+		context.closePath();
+
+
+		canvas.onmousemove = function(e) {  
+			//获取鼠标位置  
+			var x = e.pageX - canvas.offsetLeft;  
+			var y = e.pageY - canvas.offsetTop;  
+		  
+			context.globalCompositeOperation = "destination-out";  
+			context.beginPath(); 
+			context.fillStyle = "red";  
+			context.arc(x,y,10,0,2*Math.PI,true);  
+			context.fill();  
+			context.closePath();  
+		}  
+
+		// http://www.cnblogs.com/staven/p/4760960.html
+	</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.div{
+			width: 300px;
+			height: 300px;
+			border-radius: 50%;
+			position: absolute;
+			left: 58px;
+			top: 58px;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="600" height="400" id="canvas" style="background:#63c6ed"></canvas>
+	<script type="text/javascript">
+		function LuckyWheel() {
+			this.canvas = document.getElementById('canvas');
+			this.ctx = this.canvas.getContext('2d');
+			this.img = null;
+			this.timer = null;
+		}
+
+		LuckyWheel.prototype = {
+			constructor: LuckyWheel,
+			init: function(){
+				this.createDisk(0);
+				this.createDuola();				
+				this.createPointer();
+				this.clickDisk();
+			},
+			createDisk: function(i){					
+				this.ctx.save();
+				this.ctx.beginPath();
+				for(let i = 0; i <= 5; i++){
+					this.ctx.beginPath();
+					(i % 2 == 0) ? this.ctx.fillStyle = "yellow" : this.ctx.fillStyle = "#fff";
+					this.ctx.arc(200, 200, 150, Math.PI/3*i, Math.PI/3*(i+1));
+					this.ctx.lineTo(200,200);
+					this.ctx.closePath();
+					this.ctx.fill();
+				}
+				this.ctx.translate(200,200);
+				this.ctx.rotate(i)
+				this.ctx.restore();
+			},
+			createDuola: function(){
+				var img = new Image();
+				img.src = "duola_pointer.png";
+				document.body.appendChild(img);
+				this.img = img;
+			},
+
+			createPointer: function(){
+				var _this=this;
+				this.img.addEventListener('load', function(e){
+					_this.ctx.drawImage(_this.img, 345, 110);
+				});			
+					  
+			},
+			//未实现
+			clickDisk: function(){
+				var _this = this,
+					div = document.createElement('div'),
+					i = 10;
+				div.className = "div";
+				document.body.appendChild(div);
+				div.addEventListener('click', function(e){
+					_this.timer = setInterval(function(){
+						i -= 0.1;
+						_this.createDisk();
+						_this.createDisk(Math.PI*i);
+					},16);
+				});			
+
+
+			},
+			clearCanvas: function() {
+				this.ctx.clearRect(0,0,500,500);
+			}
+
+		}
+
+		var luckyWheel = new LuckyWheel();
+		luckyWheel.init();
+
+
+		/*var color = ["#D14278","#953FAE","#586837","#C7C76F","#AF2729","#3A9C76"];
+            var startAngle = 0;//扇形的开始弧度
+            var endAngle = 0;//扇形的终止弧度
+            //画一个10等份扇形组成的圆形
+            for (var i = 0; i< 6; i++){
+
+                startAngle = Math.PI*(2/6)*i;//0到2PI是一个整圆
+                endAngle = Math.PI*(2/6)*(i+1);
+                //保存当前绘画状态，以便我们画完这副画以后restore（）再恢复到这个状态，画另一副画。
+                this.ctx.save();
+                this.ctx.beginPath();
+                ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+                x和y参数是圆心坐标，radius是半径，
+                startAngle和endAngle则是扇形的起始角度和终止角度（以弧度表示），
+                anticlockwise表示做图时应该逆时针画（true）还是顺时针画（false）
+                
+                this.ctx.arc(200, 200, 120, startAngle, endAngle, false);
+                this.ctx.lineWidth = 120.0;
+                this.ctx.strokeStyle =  color[i];
+                this.ctx.stroke();//空心圆
+                this.ctx.restore();
+	     }*/
+
+	</script>
+</body>
+</html>
