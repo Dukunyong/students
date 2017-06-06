@@ -57,7 +57,7 @@ Canvas.prototype = {
 		this.ctx.stroke();
 	},
 
-	lineCap: function() {
+	lineCap: function(){
 		this.ctx.lineWidth = 10;
 		//this.ctx.lineCap = "round";
 		//this.ctx.lineCap = "butt";
@@ -85,7 +85,7 @@ Canvas.prototype = {
 		this.ctx.fillText("hello world", 100,100);
 	},
 
-	fillText: function() {
+	fillText: function(){
 		this.ctx.fillStyle = "red";
 		this.ctx.font = "60px verdana";
 		this.ctx.fillText("hello world", 100,100);
