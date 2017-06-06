@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> 刮刮乐 </title>
+		<style>
+			div{
+				width: 300px;
+				height: 200px;
+				margin: 50px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<canvas id="guaguale" width="320" height="160" >
+		</div>
+		
+		</canvas>
+		
+		<script>
+			var c = document.getElementById("guaguale");  
+            var context = c.getContext("2d");
+            
+			c.style.background = "url(timg.jpg)";  //完整图片地址  
+            c.style.width = "320px";  
+			c.style.height = "160px"; 
+			context.fillStyle = "skyblue";  
+			context.globalCompositeOperation = "destination-over"; //与destination-out实现擦除效果  
+			context.beginPath();  
+			context.fillRect(0,0,320,160);  
+			context.closePath();  
+			c.onmousemove = function(e) {  
+				//获取鼠标位置  
+				var x = e.pageX - c.offsetLeft;  
+				var y = e.pageY - c.offsetTop;  			  
+				context.globalCompositeOperation = "destination-out";  
+				context.beginPath();  
+				context.arc(x,y,10,0,2*Math.PI,true);  
+				context.fill();  
+				context.closePath();  
+			}  
+		</script>
+	</body>
+</html>

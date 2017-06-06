@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600" style="background:yellow"></canvas>
+	<script type="text/javascript" src="clock.js"></script>
+	<script type="text/javascript">
+		var canvasElem = document.getElementById("canvas");
+
+		var clock = new Clock(canvasElem);
+		clock.init();
+	</script>
+</body>
+</html>

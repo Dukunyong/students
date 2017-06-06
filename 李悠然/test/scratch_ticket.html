@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<canvas width="300" height="300" id="canvas" style="background: transparent; position: absolute;"></canvas>
+	<script type="text/javascript">
+		function ScratchTicket() {
+			this.bodyStyle = document.body.style;
+			this.bodyStyle.mozUserSelect = 'none'; 
+			this.bodyStyle.webkitUserSelect = 'none';
+
+			this.canvas = document.getElementById('canvas');
+			this.ctx = this.canvas.getContext('2d');
+
+			this.img = null;
+			this.imgs = ["duola2.jpg", "duola1.jpg", "cat.jpg"];
+		}
+
+		ScratchTicket.prototype = {
+			
+			constructor: ScratchTicket,
+
+			init: function() {
+				this.setBgImage();
+				this.setCanvas();
+				
+			},
+
+			setBgImage: function(){
+				var img = new Image(),
+					i = parseInt(Math.random()*3);
+				img.src = this.imgs[i];
+				document.body.appendChild(img);
+				this.img = img;
+			},
+			/*setBgImage: function(){
+				var i = parseInt(Math.random()*3);
+				//console.log(this.imgs[i]);
+				this.canvas.style.backgroundImage =" url("+this.imgs[i]+")"; 
+			},*/
+			setCanvas: function(){
+				var _this = this;
+				this.img.addEventListener('load', function(e){					
+					
+					var w = this.offsetWidth,
+						h = this.offsetHeight;
+
+					_this.canvas.width = w || 300;
+					_this.canvas.height = h || 300;
+					
+					_this.layer();
+					_this.mousemove();
+				});
+			},
+
+			layer: function() {
+				this.ctx.beginPath();
+				this.ctx.fillStyle = "#e4e4e4";
+				this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
+				this.ctx.fill();
+			},
+			
+			mousemove: function(){
+				var _this = this;
+				this.canvas.onmousemove = function(e) {
+					e = e || window.event;
+					var x = e.pageX - _this.canvas.offsetLeft,
+						y = e.pageY - _this.canvas.offsetTop;
+					_this.ctx.globalCompositeOperation = "destination-out";
+					_this.ctx.beginPath();
+					_this.ctx.fillStyle = "yellow";
+					_this.ctx.arc(x, y, 25, 0, Math.PI*2);
+					_this.ctx.fill();
+				}
+			}
+
+		}
+
+		var scratchTicket = new ScratchTicket();
+		scratchTicket.init();
+
+ 	</script>
+</body>
+</html>
