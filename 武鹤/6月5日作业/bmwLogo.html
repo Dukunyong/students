@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bmwLogo</title>
+</head>
+<body>
+	<canvas id="canvas" width=500 height=500 ></canvas>
+	<script>
+		function BmwLogo(){
+			this.canvas = document.getElementById("canvas");
+			this.ctx = canvas.getContext("2d");
+		}
+
+		BmwLogo.prototype = {
+			constructor: BmwLogo,
+
+			init:function(){
+				this.drawQuadrntntFour();
+				this.middle();
+				this.wrap();
+				this.allFont();
+			},
+
+			drawQuadrntnt:function(color,deg){
+				this.ctx.save();
+				this.ctx.beginPath();
+				this.ctx.translate(250,250);
+				this.ctx.strokeStyle = "#b6acb5";
+				this.ctx.rotate(deg*Math.PI/2);
+				this.ctx.lineWidth=6;
+				this.ctx.moveTo(0,1);
+				this.ctx.lineTo(100,1);
+				this.ctx.arc(0, 0, 100, 0, Math.PI /2);
+				this.ctx.lineTo(0,0);
+				this.ctx.fillStyle = color;
+				this.ctx.stroke();
+				this.ctx.fill();
+				this.ctx.restore();
+
+			},
+
+			drawQuadrntntFour:function(){
+				this.drawQuadrntnt("#0093dd",0);
+				this.drawQuadrntnt("white",1);
+				this.drawQuadrntnt("#0093dd",2);
+				this.drawQuadrntnt("white",3);
+			},
+
+			middle:function(){
+				this.ctx.save();
+				this.ctx.beginPath();
+				this.ctx.translate(250,250);
+				this.ctx.lineWidth=70;
+				this.ctx.strokeStyle = "#1f1a17";
+				this.ctx.arc(0, 0, 138, 0, 2*Math.PI);
+				this.ctx.stroke();
+				this.ctx.restore();
+			},
+
+			wrap:function(){
+				this.ctx.save();
+				this.ctx.beginPath();
+				this.ctx.translate(250,250);
+				this.ctx.lineWidth=10;
+				this.ctx.strokeStyle = "#cbcac8";
+				this.ctx.arc(0, 0, 176, 0, 2*Math.PI);
+				this.ctx.stroke();
+				this.ctx.restore();
+			},
+
+			font:function(letter,deg){
+				this.ctx.save();
+				this.ctx.beginPath();
+				this.ctx.translate(250,250);
+				this.ctx.rotate(deg);
+				this.ctx.fillStyle="#FEFCFD";
+				this.ctx.rotate(0);
+				this.ctx.font = "70px 微软雅黑";
+				this.ctx.fillText(letter,-30,-110);
+				this.ctx.restore();
+			},
+
+			allFont:function(){
+				this.font("M",0);
+				this.font("B",-Math.PI*0.25);
+				this.font("w",Math.PI*0.3);
+			}
+
+
+		}
+
+		var bmwLogo = new BmwLogo();
+		bmwLogo.init();
+	</script>
+</body>
+</html>
