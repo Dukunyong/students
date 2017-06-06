@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="youtube.css"/>
+	</head>
+	<body>
+		<div id="container">
+			<div class="con1">
+				<ul>
+					<li><a><img src="index.jpg"></a></li>
+					<li></li>
+					<li></li>
+					<li><a><img src="search.jpg"></a></li>
+				</ul>
+				<header>
+					<img src="home.jpg" />
+					<img src="huo.jpg" />
+					<img src="pe.jpg" />
+				</header>
+				<section>
+				<video class="js-video" poster="005.jpg">
+					<source src = "4.ogg" type="video/ogg"></source>
+					<source src="4.mp4" type="video/mp4"></source>
+					<source src="4.webm" type="video/webm"></source>
+					浏览器不支持html5的播放
+				</video>
+				<p>youtube全球最大的视频播放网站</p>
+				
+				</section>
+			<script src="jquery-1.11.0.min.js"></script>
+			<script>
+				function Page() {
+					var video = $(".js-video");
+					this.video = video[0];
+				}
+				
+				$.extend(Page.prototype, {
+					init: function() {
+						this.bindEvents();
+					},
+					
+					bindEvents: function() {
+					$(".js-video").on("click", $.proxy(this.handlePlayClick, this));
+					//$(".js-video").on("click", $.proxy(this.handlePauseClick, this));
+					},
+					
+					handlePlayClick: function() {
+						this.video.play();
+					},
+					
+					
+				});
+				
+				var page = new Page();
+				page.init();
+				
+				
+				
+				
+			</script>
+		</div>
+	</body>
+</html>
