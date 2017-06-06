@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="457" height="290" style="background: url(center.jpg);"></canvas>
+	</body>
+</html>
+<script type="text/javascript">
+	function Canvas(){
+		this.canvas=document.getElementById("canvas");
+		this.context=this.canvas.getContext("2d");
+	}
+	Canvas.prototype={
+		constuctor:Canvas,
+//		drawImage:function(){
+//			this.context.save();
+//			this.context.beginPath();
+//			var img=new Image();
+//			var that=this;
+//			img.onload=function(){
+//				that.context.drawImage(img,0,0,457,290,0,0,457,290);
+//			}
+//			img.src="http://pic.qiantucdn.com/58pic/18/16/09/14p58PICti6_1024.jpg!/fw/780/watermark/url/L3dhdGVybWFyay12MS4zLnBuZw==/align/center"
+//			this.context.restore();
+//		},
+		rect:function(){
+			this.context.save();
+			this.context.beginPath();
+			this.context.fillStyle="pink";
+			this.context.fillRect(301,243,116,23);
+			this.context.closePath();
+			this.context.restore();
+		},
+		mouse:function(){
+			var that=this;
+			this.canvas.onmousemove=function(e){
+				var x=e.pageX-that.canvas.offsetLeft;
+				var y=e.pageY-that.canvas.offsetTop;
+				that.context.globalCompositeOperation="destination-out";//实现擦除效果
+				that.context.beginPath();
+				that.context.fillStyle="red";
+				that.context.arc(x,y,10,0,2*Math.PI,true);
+				that.context.fill();
+				that.context.closePath();
+			}
+			
+		}
+	}
+	var canvas=new Canvas();
+//	canvas.drawImage();
+	canvas.rect();
+	canvas.mouse();
+	
+
+</script>
