@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>card</title>
+		<style type="text/css">
+			div{
+				width:500px;
+				height:500px;
+				background: url(img/timg.jpg) no-repeat;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="">
+			<canvas id="canvas" width="500" height="500"></canvas>
+		</div>
+		
+		<script src="card.js"></script>
+		<script>
+			var canvasElement = document.getElementById('canvas');
+			var canvas = new Canvas(canvasElement);
+			canvas.init();
+		</script>
+	</body>
+</html>
