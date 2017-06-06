@@ -167,7 +167,7 @@ Canvas.prototype = {
 		this.ctx.closePath();
 		this.ctx.fill();
 	},
-
+	
 	translate: function() {
 		this.ctx.translate(100,100);
 		this.ctx.moveTo(0, 0);
