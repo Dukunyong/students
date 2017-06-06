@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+		<title>mytube</title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body>
+		<div class="header"></div>
+			<ul class="contents">
+				<li>
+					<video class="video" src="DeepJack.mp4"></video>
+					<div class="alltimes">10.11</div>
+				</li>
+				<li>
+					<video class="video" src="DeepJack.mp4"></video>
+					<div class="alltimes"></div>
+				</li>
+				<li>
+					<video class="video" src="DeepJack.mp4"></video>
+					<div class="alltimes"></div>
+				</li>
+			</ul>
+			
+		
+		
+		<script src="jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function Page() {
+				this.video = $(".video");
+				this.alltimes = $(".alltimes");
+			}
+			
+			$.extend(Page.prototype, {
+				constructor: Page,
+				
+				init: function() {
+					this.bindEvents();
+				},
+				
+				bindEvents: function() {
+					this.video.on("canplay", this.addPlayAllTime);
+					this.video.on("click", this.handlePlayClick);
+				},
+				
+				addPlayAllTime: function() {
+//					console.log(this)
+					if(!this.ended){
+						$(this).next(".alltimes").text(this.duration);
+					}
+				},
+				
+				handlePlayClick: function() {
+					var this_ = this;
+					if(this.paused) {
+						this.play();
+						this.timer = setInterval(function(){
+//							console.log(this_.currentTime)
+							$(this_).next(".alltimes").text(this_.currentTime.toFixed(2));
+						},50)
+					}else{
+						this.pause();
+						clearInterval(this.timer);
+					}
+				}
+			})
+			
+			var page = new Page();
+			page.init();
+		</script>
+	</body>
+</html>

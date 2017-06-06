@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--宽高不能在css里面写-->
+		<canvas width="500" height="500" id="canvas" style="background:blanchedalmond;"></canvas>
+	</body>
+</html>
+<script src="clock.js"></script>
+<script type="text/javascript">
+	var canvasElem=document.getElementById("canvas"),
+		clock=new Clock(canvasElem);
+		clock.init();
+</script>

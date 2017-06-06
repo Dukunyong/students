@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewpoint" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<title>大主宰</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		a{
+			text-decoration: none;
+		}
+		input{
+			border:0;
+		}
+		#box{
+			width:100%;
+			height:100%;
+			background: #eee;
+			font-size:50px;
+		}
+		#box #head{
+			width:100%;
+			height: 150px;
+			background-color: rgba(0,0,0,.9);
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content:space-between;
+			align-items:center;
+			position: fixed;
+			top: 0;
+		}
+		#box #head .left{
+			padding-left:20px;
+		}
+		#box #head .right{
+			padding-right: 20px;
+		}
+		#box #head .right a:first-child{
+			border-radius: 100%;
+			border:4px dashed #fff;
+			margin-right: 30px;
+		}
+		#box #head div a{
+			color:#fff;
+		}
+		#box #body{
+			line-height: 70px;
+			padding:0 20px;
+		}
+		#box #foot{
+			width:100%;
+			background-color: rgba(0,0,0,.9);
+			color: #fff;
+			position: fixed;
+			bottom: 0;
+		}
+		#box #foot .font{
+			width:100%;
+			height:200px;
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: space-around;
+			align-items:center;
+			font-size: 70px;
+		}
+		#box #foot .bgColor{
+			width:100%;
+			height:200px;
+			display:flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+		#box #foot .bgColor input{
+			width:20%;
+			height: 100px;
+		}
+		#box #foot .bgColor input:first-child{
+			background-color:#70db93;
+		}
+		#box #foot .bgColor input:nth-child(2){
+			background-color:#855e42;
+		}
+		#box #foot .bgColor input:last-child{
+			background-color:#238e23;
+		}
+		#box #foot .night{
+			width: 100%;
+			text-align: center;
+			line-height: 80px;
+		}
+		#box #foot .night a{
+			color:#fff;
+		}
+		#box #foot .night a:first-child{
+			display:none;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="head">
+			<div class="left">
+				<a href="#"><</a>
+			</div>
+			<div class="right">
+				<a href="#">￥</a>
+				<a href="#">···</a>
+			</div>
+		</div>
+		<div id="body">
+			<p>洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律洒了可更换罚款拉萨和法律</p>
+		</div>
+		<div id="foot">
+			<div class="font">
+				<span data-char="-">T-</span>
+				<span data-char="">T</span>
+				<span data-char="+">T+</span>
+			</div>
+			<div class="bgColor">
+				<input type="text" >
+				<input type="text" >
+				<input type="text" >
+			</div>
+			<div class="night">
+				<a href="#" id="sunLight">日光模式</a>
+				<a href="#" id="nightMode">夜间模式</a>
+			</div>
+		</div>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<script>
+	
+		$("#body").on("click",function(e) {
+			var top = e.clientY,
+				topMin=$("#box").height() * 0.2,
+				topMax=$("#box").height() * 0.4;
+			if( top >= topMin && top <= topMax ) {
+				$("#head,#foot").slideToggle(100);
+			}
+		})
+
+		$(".font").on("click", "span", function() {
+			var size=parseInt($("#body").css("font-size"));
+			switch( $(this).attr("data-char")){
+				case "-" : $("#body").css("font-size", --size );break;
+				case "+" : $("#body").css("font-size", ++size  );break;
+				default  : $("#body").css("font-size", 50);
+			}
+		})
+
+		$(".bgColor").on("click", "input", function() {
+
+			$("#body").css( "background-color", $(this).css("background-color") );
+		})
+
+		$(".night").on("click", "a#nightMode", function() {
+			$("#body").css({
+				"background-color":"#000",
+				"color":"#fff"
+			});
+			$(this).hide();
+			$(this).siblings().show();
+		})
+		$(".night").on("click", "a#sunLight", function() {
+			$("#body").css({
+				"background-color":"#fff",
+				"color":"#000"
+			});
+			$(this).hide();
+			$(this).siblings().show();
+		})
+	</script>
+</body>
+</html>

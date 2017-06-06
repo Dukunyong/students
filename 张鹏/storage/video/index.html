@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>童话镇</title>
+	<style>
+		video{
+			width:700px;
+		}
+		.box{
+			width:700px;
+			display:flex;
+			flex-flow:row nowrap ;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.box label span{
+			display:block;
+			float:left;
+			margin-top: 3px;
+		}
+		
+	</style>
+</head>
+<body>
+	<video class="js-video">
+		<source src="暗杠 - 童话镇plus 南京站现场视频 (陈一发儿合唱版).ogg" type="video/ogg"></source>
+		<source src="暗杠 - 童话镇plus 南京站现场视频 (陈一发儿合唱版).mp4" type="video/mp4"></source>
+		<source src="暗杠 - 童话镇plus 南京站现场视频 (陈一发儿合唱版).webm" type="video/webm"></source>
+		 您的浏览器弱爆了!!!
+	</video>
+	<div class="box">
+		<button id="playBtn">播放</button>
+		<button id="pauseBtn">暂停</button>
+		<span id="currentSpan">00:00</span>
+		<label><span>进度:</span><input type="range" step="0.01" max="1" min="0" id="scheduleBtn"></label>
+		<span id="videoSpan"></span>
+		<label><span>音量：</span><input type="range" step="0.01" max="1" min="0" id="volumeBtn"></label>
+		<span id="volumeSpan">50%</span>
+		<button id="screenBtn">全屏</button>
+	</div>
+	
+
+	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<script>
+		function Page() {
+			this.video = $(".js-video")[0];
+		}
+		$.extend(Page.prototype, {
+
+			init: function() {
+				this.bindEvents();
+
+			},
+
+			bindEvents: function() {
+				var playBtn = $("#playBtn"),
+					pauseBtn = $("#pauseBtn"),
+					screenBtn = $("#screenBtn"),
+					scheduleBtn = $("#scheduleBtn"),
+					volumeBtn = $("#volumeBtn");
+
+				playBtn.on("click", $.proxy(this.handlePlayBtnClick, this) );
+				pauseBtn.on("click", $.proxy(this.handlePauseBtnClick, this) );
+				screenBtn.on("click", $.proxy(this.handlescreenBtnClick, this) );
+				scheduleBtn.on("change", $.proxy(this.handlesCheduleBtnChange, this) );
+				volumeBtn.on("change", $.proxy(this.handleVolumeChange, this) );
+				$(this.video).on("timeupdate", $.proxy(this.handleCurrentSpan, this) );
+				$(this.video).on("canplay", $.proxy(this.handleVideoSpan, this) );
+				$(this.video).on("volumechange", $.proxy(this.handleVolumeSpan, this) );
+			},
+
+			handlePlayBtnClick: function() {
+				this.video.play();
+			},	
+
+			handlePauseBtnClick: function() {
+				this.video.pause();
+			},
+
+			handlescreenBtnClick: function() {
+				this.launchFullscreen(this.video);
+			},
+
+			handlesCheduleBtnChange: function(e) {
+				var target = $(e.target),
+					value = target.val(),
+					totalTime = value * this.video.duration;
+
+				this.video.currentTime = totalTime * value;	
+				//this.handleCurrentSpan();
+ 			},
+
+ 			handleVolumeChange: function(e) {
+ 				var target = $(e.target),
+ 					value = target.val();
+ 				this.video.volume = value;
+ 			},
+
+ 			handleVideoTimeUpdated: function(e) {
+ 				var ratio = this.video.currentTime / this.video.duration;
+				$("#currentspan").text(this.video.currentTime);
+				$("#scheduleBtn").val(ratio);
+ 			},
+
+ 			handleCurrentSpan: function(e) {
+				var ratio = this.video.currentTime / this.video.duration,
+					beginMinuteTime  = parseInt(this.video.currentTime % 60),
+					beginSecondTime = parseInt(this.video.currentTime / 60);
+				beginMinuteTime = beginMinuteTime >= 10 ? beginMinuteTime : "0" + beginMinuteTime;	
+				beginSecondTime = beginSecondTime >= 10 ? beginSecondTime : "0" + beginSecondTime; 
+				$("#currentSpan").text( beginSecondTime + ":" + beginMinuteTime );
+				$("#scheduleBtn").val(ratio);
+ 			},
+
+ 			handleVideoSpan: function() {
+ 				var  endSecondTime= parseInt(this.video.duration % 60),
+ 					 endMinuteTime= parseInt(this.video.duration / 60);
+ 				endMinuteTime = endMinuteTime >= 10 ? endMinuteTime : "0" + endMinuteTime;
+ 				endSecondTime = endSecondTime >= 10 ? endSecondTime : "0" + endSecondTime;
+  				$("#videoSpan").text( endMinuteTime + ":" + endSecondTime );
+ 			},
+
+ 			handleVolumeSpan: function() {
+ 				$("#volumeSpan").text( parseInt(this.video.volume * 100) + "%");
+ 			},
+
+			launchFullscreen: function (element){
+			    //此方法不可以在异步任务中执行，否则火狐会出问题
+			    if(element.requestFullscreen) {
+			        element.requestFullscreen();
+			    } else if(element.mozRequestFullScreen) {
+			        element.mozRequestFullScreen();
+			    } else if(element.msRequestFullscreen){
+			        element.msRequestFullscreen();
+			    } else if(element.oRequestFullscreen){
+			        element.oRequestFullscreen();
+			    }else if(element.webkitRequestFullscreen){
+			        element.webkitRequestFullScreen();
+			    }else{
+			        var docHtml = document.documentElement;
+			        var docBody = document.body;
+			        var videobox = document.getElementById('videobox');
+			        var cssText = 'width:100%;height:100%;overflow:hidden;';
+			        docHtml.style.cssText = cssText;
+			        docBody.style.cssText = cssText;
+			        videobox.style.cssText = cssText+';'+'margin:0px;padding:0px;';
+			        document.IsFullScreen = true;
+			    }
+			},
+
+			//退出全屏
+			exitFullscreen: function (){
+			    if (document.exitFullscreen) {
+			        document.exitFullscreen();
+			    } else if (document.msExitFullscreen) {
+			        document.msExitFullscreen();
+			    } else if (document.mozCancelFullScreen) {
+			        document.mozCancelFullScreen();
+			    } else if(document.oRequestFullscreen){
+			        document.oCancelFullScreen();
+			    }else if (document.webkitExitFullscreen){
+			        document.webkitExitFullscreen();
+			    }else{
+			        var docHtml = document.documentElement;
+			        var docBody = document.body;
+			        var videobox = document.getElementById('videobox');
+			        docHtml.style.cssText = "";
+			        docBody.style.cssText = "";
+			        videobox.style.cssText = "";
+			        document.IsFullScreen = false;
+			    }
+			}
+		})
+
+		var page = new Page();
+		page.init();
+	</script>
+</body>
+</html>
