@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BMW</title>
+</head>
+<body>
+	<canvas width="500" height="500" id="canvas"></canvas>
+</body>
+<script>
+	function BMW(){
+		this.canvas=document.getElementById("canvas");
+		this.c=this.canvas.getContext("2d");
+	}
+	BMW.prototype={
+		constructor:BMW,
+		init:function(){
+			this.createOut();
+			this.createTwo();
+			this.createThree();
+			this.createFont1();
+			this.createFont2();
+			this.createFont3();
+			this.createIn();
+		},
+		createOut:function(){
+			this.c.save();
+			this.c.beginPath();
+			this.c.fillStyle="#888";
+			this.c.moveTo(250,250);
+			this.c.arc(250,250,200,0,Math.PI*2);
+			this.c.lineTo(250,250);
+			this.c.stroke();
+			this.c.fill();
+			this. c.restore();
+		},
+		createTwo:function(){
+			this.c.save();
+			this.c.beginPath();
+			this.c.fillStyle="#e1e1e1";
+			this.c.moveTo(250,250);
+			this.c.arc(250,250,198,0,Math.PI*2);
+			this.c.lineTo(250,250);
+			this.c.stroke();
+			this.c.fill();
+			this. c.restore();
+		},
+		createThree:function(){
+			this.c.save();
+			this.c.beginPath();
+			this.c.fillStyle="#333";
+			this.c.moveTo(250,250);
+			this.c.arc(250,250,180,0,Math.PI*2);
+			this.c.lineTo(250,250);
+			this.c.stroke();
+			this.c.fill();
+			this. c.restore();
+		},
+		createFont1:function(){
+			this.c.save();
+			this.c.beginPath();			
+			this.c.fillStyle="#e1e1e1"
+			this.c.font = "50px 微软雅黑";
+			this.c.fillText("B" ,110,180);		
+			this. c.restore();
+		},
+		createFont2:function(){
+			this.c.save();
+			this.c.beginPath();			
+			this.c.fillStyle="#e1e1e1"
+			this.c.font = "50px 微软雅黑";
+			this.c.fillText("M" ,220,120);		
+			this. c.restore();
+		},
+		createFont3:function(){
+			this.c.save();
+			this.c.beginPath();			
+			this.c.fillStyle="#e1e1e1"
+			this.c.font = "50px 微软雅黑";
+			this.c.fillText("W" ,340,180);		
+			this. c.restore();
+		},
+		createIn:function(){
+			this.c.save();
+			this.c.beginPath();
+			for(var i=0;i<4;i++){
+				if(i%2==0){
+					this.c.moveTo(250,250);
+					this.c.arc(250,250,100,0,Math.PI*2/4);
+					this.c.lineTo(250,250);
+					this.c.fillStyle="white";
+					this.c.stroke();
+					this.c.fill();
+				}else{
+					this.c.fillStyle="blue";
+					this.c.moveTo(250,250);
+					this.c.arc(250,250,100,0,Math.PI*2/4);
+					this.c.lineTo(250,250);
+					this.c.stroke();
+					this.c.fill();
+				}				
+				
+			}
+			
+			this.c.restore();
+		}
+
+	}
+	var bmw=new BMW();
+	bmw.init();
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        .container {
+            width: 400px;
+            height: 200px;
+            border: 1px dotted red;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="c"></canvas>
+</div>
+<script>
+    var cv = document.getElementById("c");
+    var ctx = cv.getContext("2d");
+    cv.width = 400;
+    cv.height = 200;
+    var img = cv.toDataURL("image/jpg", 1);
+    //将图片设置为canvas的背景图片
+    cv.style.backgroundImage = "url(img/王.png)";
+    cv.style.backgroundSize="100% 100%";
+    //给canvas画布填充灰色的矩形
+    ctx.fillStyle = "silver";
+    ctx.fillRect(0, 0, cv.width, cv.height);
+    var radius = 20;
+    cv.onmousemove = function(e) {
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.beginPath();
+        var x = e.clientX - cv.offsetLeft;
+        var y = e.clientY - cv.offsetTop;
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+    };
+</script>
+</body>
+</html>
