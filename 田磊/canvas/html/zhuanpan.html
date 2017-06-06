@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas width="500" height="500" id="canvas"></canvas><br />
+		<input type="button" value="开始" id="input1"/>
+		<input type="button" value="停止" id="input2"/>
+	</body>
+</html>
+
+<script src="../js/zhuanpan.js"></script>
+<script>
+	var canvasElem = document.getElementById("canvas"),
+		input1 = document.getElementById("input1"),
+		input2 = document.getElementById("input2");
+	var turntable = new Turntable(canvasElem);
+	//
+	turntable.init();
+	var timer;
+	input1.onclick=function(){
+		var i=1;
+		timer = setInterval(function(){
+				i++
+				turntable.init(i);
+			},10);
+	};
+	input2.onclick=function(){
+		clearInterval(timer);
+	}
+</script>
