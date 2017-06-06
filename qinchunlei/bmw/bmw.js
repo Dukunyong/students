@@ -1,0 +1,105 @@
+function Canvas(){
+	this.canvas=document.getElementById('canvas');
+	this.con=this.canvas.getContext('2d');
+}
+Canvas.prototype={
+	constructor:Canvas,
+	init:function(){
+       this.createOutCircle();
+       this.createMiddleCircle();
+       this.createIntCircle();
+       this.leftfanshaped();
+       this.rightfanshaped();
+       this.fontB();
+       this.fontM();
+       this.fontW();  
+	},
+	createOutCircle:function(){
+		//绘制最外边的圆
+		this.con.beginPath();
+		this.con.arc(250,250,150,0,Math.PI*2);
+		this.con.fillStyle='#bbb';
+		this.con.strokeStyle="#fff";
+		this.con.stroke();
+		this.con.fill();
+		this.con.restore();
+	},
+	createMiddleCircle:function(){
+		    //绘制中间圆
+        this.con.beginPath();
+		this.con.arc(250,250,140,0,Math.PI*2);
+		this.con.fillStyle='#1f1a17';
+		this.con.strokeStyle="#fff";
+		this.con.stroke();
+		this.con.fill();
+		this.con.restore();
+	},
+	createIntCircle:function(){
+           //绘制内圆
+        this.con.beginPath();
+		this.con.arc(250,250,100,0,Math.PI*2);
+		this.con.fillStyle='#fff';
+		this.con.strokeStyle="#fff";
+		this.con.stroke();
+		this.con.fill();
+        this.con.restore();
+	},
+	//绘制内部扇形
+	leftfanshaped:function(){
+		//左上角扇形
+        this.con.beginPath();
+		this.con.arc(250,250,100,0,Math.PI/2);
+		this.con.lineTo(250,250);
+		this.con.fillStyle='#017cc2';
+		this.con.strokeStyle="#fff";
+		this.con.stroke();
+		this.con.fill();
+		this.con.restore();
+      
+	},
+	rightfanshaped:function(){
+		  //右下角扇形
+		this.con.beginPath();
+		this.con.arc(250,250,100,Math.PI,Math.PI*1.5);
+		this.con.lineTo(250,250);
+		this.con.fillStyle='#017cc2';
+		this.con.strokeStyle="#fff";
+		this.con.stroke();
+		this.con.fill();
+		this.con.restore();
+	},
+	fontB:function(){
+		this.con.save();
+	   this.con.beginPath();
+	   this.con.translate(250,250);
+       this.con.font='35px 微软雅黑';
+       this.con.fillStyle='#fff';
+       this.con.rotate(-Math.PI/7);
+       this.con.fillText('B',-80,-80);
+       this.con.fill();
+       this.con.restore();
+	},
+	fontM:function(){
+	   this.con.save();
+	   this.con.beginPath();
+	   this.con.translate(250,250);
+       this.con.font='35px 微软雅黑';
+       this.con.fillStyle='#fff';
+       this.con.fillText('M',-20,-105);
+       this.con.fill();
+       this.con.restore();
+	},
+	fontW:function(){
+	   this.con.save();
+	   this.con.beginPath();
+	   this.con.translate(250,250);
+       this.con.font='35px 微软雅黑';
+       this.con.fillStyle='#fff';
+         this.con.rotate(Math.PI/7);
+       this.con.fillText('W',50,-80);
+       this.con.fill();
+       this.con.restore();
+	}
+}
+var bmw=new Canvas();
+bmw.init();
