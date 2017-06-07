@@ -1,0 +1,28 @@
+@charset "UTF-8";
+* { margin: 0; padding: 0; }
+
+.icon { width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; overflow: hidden; }
+
+a { text-decoration: none; color: black; }
+
+body, html { font-family: "微软雅黑"; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; }
+
+header { width: 100%; height: 100px; background: red; }
+header #top { width: 100%; height: 50px; display: flex; flex-direction: row; justify-content: space-between; }
+header #top .left { display: inline-block; margin-left: 6px; width: 50%; height: 50px; }
+header #top .left .icon { font-size: 40px; }
+header #top .left .font { font-size: 16px; color: white; vertical-align: middle; margin-top: -20px; }
+header #top .right { width: 50%; height: 50px; display: flex; flex-direction: row; justify-content: flex-end; line-height: 50px; margin-top: 10px; }
+header #top .right .icon { font-size: 30px; }
+header #top .right div { margin-left: 10px; margin-right: -16px; }
+header #top .right div li { line-height: 10px; color: white; }
+header #buttom { width: 100%; height: 50px; display: flex; flex-direction: row; justify-content: space-around; margin-top: 10px; font-size: 35px; }
+
+section { width: 100%; border-bottom: 1px solid gainsboro; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; }
+section img { display: none; }
+section .video { width: 366px; height: 207px; margin-top: -20px; }
+section .introduce { width: 366px; display: flex; flex-direction: column; margin: 12px; align-items: center; margin-top: -20px; }
+section .introduce p:nth-child(1) { max-height: 30px; width: 336px; font-size: 12px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-bottom: 5px; }
+section .introduce p:last-child { font-size: 12px; color: gray; }
+
+/*# sourceMappingURL=mobile-video.css.map */

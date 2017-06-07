@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="ebook_reader.css">
+</head>
+<body>
+	<div class="content">
+		<header></header>
+		<section class="">
+			<h2>偶然</h2>
+			<p>
+				我是天空里的一片云</br>
+				偶尔投映在你的波心</br>
+				你无须诧异</br>
+				更无须欢喜</br>
+				在转瞬间消灭了踪迹</br>
+				你我相逢在黑夜的海上</br>
+				你有你的，我有我的，方向</br>
+				你记得也好</br>
+				最好你忘掉</br>
+				在这交汇时互放的光亮</br>			
+			</p>
+		</section>
+		<footer>
+			<form class="js-changeFontSize">
+				<input type="button" name="" value="A+" class="js-addFontSize "> 
+				<input type="button" name="" value="A-" class="js-minusFontSize ">
+			</form>
+			<div class="js-bgcolor-box">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</footer>
+	</div>	
+	<script type="text/javascript" src="jquery-1.11.3.js"></script>
+	<script type="text/javascript">
+		function Page() {
+			this.content = $('section');
+			_this = this; 
+		}
+
+		$.extend(Page.prototype,{
+
+			init: function() {
+				this.changeFontSize();
+				this.changBgColor();
+				this.restorePageInfo();
+			},
+
+			restorePageInfo: function() {
+				try{
+					if (window.localStorage) {
+						if(window.localStorage.pageInfo) {
+							pageInfo = JSON.parse(window.localStorage.pageInfo);
+							console.log(pageInfo.fontSize,pageInfo.bgColor);
+							this.content.css({
+								"font-size": pageInfo.fontSize,
+								"background-color": pageInfo.bgColor
+							});
+						}
+					}
+				}catch(e){};
+			},
+			
+			changeFontSize: function() {
+				$('.js-changeFontSize').on("click",this.handleFontSize);
+			},
+
+			handleFontSize: function(e){
+				var target = e.target,
+					opt = $(target).val(),
+					fontSize = parseInt($('section').css('font-size'));
+				if(opt == "A+"){
+					fontSize += 2;
+					fontSize = fontSize >= 36 ? 36 : fontSize;
+				}else{
+					fontSize -= 2;	
+					fontSize = fontSize <= 10 ? 10 : fontSize;
+				}
+				$('section').css('font-size',fontSize);
+				_this.savePageInfo({fontSize: fontSize});
+			},
+
+			changBgColor: function() {				
+				$('.js-bgcolor-box').on("click","span",this.handleBgColor)
+			},
+
+			handleBgColor: function() {				
+				var bgColor = $(this).css('background-color');
+				$('section').css('background-color',bgColor);
+				_this.savePageInfo({bgColor: bgColor});  //this指向问题
+			},
+
+			/**
+				savePageInfo 存储页面信息，fontSize和bgColor
+				@param
+				obj: {
+					fontSize: fontSize,
+					bgColor: bgClor
+				}
+			*/
+			savePageInfo: function(obj) {				
+				var 
+					a = JSON.parse(window.localStorage.pageInfo),
+				    bgColor = a.bgColor ? a.bgColor : "#ffffff",
+					fontSize = a.fontSize ? a.fontSize : 12,
+					pageInfo = {
+						bgColor: obj.bgColor ? obj.bgColor : bgColor,
+						fontSize: obj.fontSize ? obj.fontSize : fontSize
+					};
+					
+				pageInfo = JSON.stringify(pageInfo);				
+				try{
+					if (window.localStorage) {
+						window.localStorage.pageInfo = pageInfo;
+					}
+				}catch(e){};
+			}
+
+
+		});
+
+		var page = new Page();
+		page.init();
+	</script>
+</body>
+</html>

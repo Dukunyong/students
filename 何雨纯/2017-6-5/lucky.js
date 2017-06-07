@@ -1,24 +1,29 @@
-function Lucky(canvasElem){
-	this.canvas=canvasElem;
-	this.ctx=this.canvas.getContext("2d");
+function Lucky(canvasElem) {
+	this.canvas = canvasElem;
+	this.ctx = this.canvas.getContext("2d");
 }
-Lucky.prototype={
-	constructor:Lucky,
-	init:function(i){
+
+Lucky.prototype = {
+
+	constructor: Lucky,
+
+	init: function(i) {
 		this.createLuckyPannel(i);			
 		this.createLuckyline(i);
 		this.createLuckyCenterDot();		
 	},
-	createLuckyPannel:function(i){
+
+	createLuckyPannel: function(i) {
 		this.ctx.save();
-		this.ctx.fillStyle="red";
-		this.ctx.strokeStyle="white";
-		this.ctx.arc(250,250,200,0,Math.PI*2);
+		this.ctx.fillStyle = "red";
+		this.ctx.strokeStyle = "white";
+		this.ctx.arc(250, 250, 200, 0, Math.PI * 2);
 		// this.ctx.rotate(i);
 		this.ctx.stroke();
 		this.ctx.fill();
 		this.ctx.restore();
 	},
+
 	createLuckyCenterDot:function(){
 		this.ctx.save();
 		this.ctx.beginPath();
