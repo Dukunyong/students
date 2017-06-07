@@ -26,7 +26,7 @@ $.extend(Novel.prototype, {
 		}
 		$(".js-pageCount").css({fontSize:size});
 		$(".js-handleFontRestoreBtn span").html(size);
-		this.handleSubmitClick();
+		this.handlestoreInformation();
 
 	},
 
@@ -39,18 +39,36 @@ $.extend(Novel.prototype, {
 		}
 		$(".js-pageCount").css({fontSize:size});
 		$(".js-handleFontRestoreBtn span").html(size);
-		this.handleSubmitClick();
+		this.handlestoreInformation();
 	},
 
 
 	handleColorChangeClick: function(e) { //切换背景色	
 		var color= $(e.target).attr("data-color");
 		$(".js-pageCount").css("background",color)
-		this.handleSubmitClick();
+		this.handlestoreInformation();
 	},
 
 
-	restoreUserInfo: function() {//恢复上一次用户信息
+
+	handlestoreInformation: function(size, color) {//储存信息
+		var userInfo = {
+			userSize: $(".js-pageCount").css("fontSize"),
+			userColor: $(".js-pageCount").css("backgroundColor")
+		};
+
+		userInfo = JSON.stringify(userInfo);
+
+		//保存用户信息在本地
+		try{
+			if(window.localStorage) {
+			    window.localStorage.userInfo =userInfo;
+			}
+		//catch必须传参
+		}catch(e){}
+	},
+
+	restoreUserInfo: function() {//赋予用户储存的信息
 		try{
 			if (window.localStorage) {
 				var userInfo = {};
@@ -63,41 +81,22 @@ $.extend(Novel.prototype, {
 		//catch必须传参
 		}catch(e){}
 	},
+	
 
-	handleSubmitClick: function(size, color) {//提交
+	// handleClearClick: function() {//清空localStotage
+	// 	alert("要清除了")
+	// 	try{
+	// 		if (window.localStorage) {
+	// 			window.localStorage.clear();
+	// 		}
+	// 	//catch必须传参
+	// 	}catch(e){}
 
+	// },
 
-		var userInfo = {
-			userSize: $(".js-pageCount").css("fontSize"),
-			userColor: $(".js-pageCount").css("backgroundColor")
-		};
+	// deffered: function() {//分页
 
-		
-		userInfo = JSON.stringify(userInfo);
-
-		//保存用户信息在本地
-		try{
-			if(window.localStorage) {
-			    window.localStorage.userInfo =userInfo;
-			}
-		//catch必须传参
-		}catch(e){}
-	},
-
-	handleClearClick: function() {//清空localStotage
-		alert("要清除了")
-		try{
-			if (window.localStorage) {
-				window.localStorage.clear();
-			}
-		//catch必须传参
-		}catch(e){}
-
-	},
-
-	deffered: function() {//分页
-
-	}
+	// }
 
 });
 
