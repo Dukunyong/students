@@ -27,22 +27,22 @@ p{
 	height: 2.5rem;
 	border-radius: 20%;
 }
-.choice_color li.red{
+.red{
 	background: red;
 }
-.choice_color li.blue{
+.blue{
 	background: blue;
 }
-.choice_color li.yellow{
+.yellow{
 	background: yellow;
 }
-.choice_color li.pink{
+.pink{
 	background: pink;
 }
-.choice_color li.orange{
+.orange{
 	background: orange;
 }
-.choice_color li.green{
+.green{
 	background: green;
 }
 .change_fontsize{
