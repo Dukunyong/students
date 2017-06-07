@@ -161,7 +161,7 @@
 							$("p").css("font-size",localStorage.fontSize);
 							$(".box").css("background",localStorage.background);
 							$(".color div").css("background",localStorage.background);
-							$(body).scrollTop(localStorage.scrollTop);
+							$("body").scrollTop(localStorage.scrollTop);
 						}
 					}catch(e){}
 				},
@@ -169,7 +169,8 @@
 				handleScrollTopChange: function() {
 					try{
 						if( window.localStorage ){
-							localStorage.scrollTop = $(body).scrollTop();
+							console.log($("body").scrollTop());
+							localStorage.scrollTop = $("body").scrollTop();
 						}
 					}catch(e){}
 				},

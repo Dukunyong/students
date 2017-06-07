@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.contentBox{
+				margin:0 auto;
+				width:500px;
+				height:800px;
+				border:1px solid #000;
+				position: relative;
+				font-size: 16px;
+			}
+			.contralBox{
+				width:100%;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left:0;
+				bottom:0;	
+			}
+			.contralBtn{
+				width:30px;
+				height:30px;
+				background: green;
+				font-size: 16px;
+				text-align: center;
+				line-height: 30px;
+				position:absolute;
+				top:25px;
+				cursor:pointer;
+			}
+			.bigBtn{
+				left:360px;
+			}
+			.numberBtn{
+				left:235px;
+			}
+			.smallBtn{
+				left:110px;
+			}
+			.color{
+				position:absolute;
+				width:30px;
+				height:10px;
+				top:65px;
+				cursor:pointer;
+			}
+			.white{
+				left:80px;
+				background: white;
+			}
+			.gray{
+				left:160px;
+				background: darkslategray;
+			}
+			.yellow{
+				left:240px;
+				background:yellow;
+			}
+			.green{
+				left:320px;
+				background: green;
+			}
+			.blue{
+				left:400px;
+				background: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="contentBox js-contentBox">
+			《桃花庵歌》
+		年代: 明 作者: 唐寅
+		桃花坞里桃花庵，桃花庵下桃花仙；
+		桃花仙人种桃树，又摘桃花卖酒钱。
+		酒醒只在花前坐，酒醉换来花下眠；
+		半醒半醉日复日，花落花开年复年。
+		但愿老死花酒间，不愿鞠躬车马前；
+		车尘马足富者趣，酒盏花枝贫者缘。
+		若将富贵比贫贱，一在平地一在天；
+		若将贫贱比车马，他得驱驰我得闲。
+		别人笑我忒疯癫，我笑别人看不穿；
+		不见五陵豪杰墓，无花无酒锄做田。
+		<br />
+			《浣溪沙》
+		年代: 宋 作者: 苏轼
+		软草平莎过雨新，轻沙走马路无尘，何时收拾耦耕身？
+		日暖桑麻光似泼，风来蒿艾气如熏，使君原是此中人。
+		<br />
+			《长相思·晴也行》
+		年代: 宋 作者: 无名氏
+		晴也行。雨也行。雨也行时不似晴。天晴终快人。名也成。利也成。利也成时不似名。名成天下惊。
+		<br />
+			《渔家傲·塞下秋来风景异》
+		年代: 宋 作者: 范仲淹
+		塞下秋来风景异，衡阳雁去无留意。四面边声连角起。千嶂里，长烟落日孤城闭。
+		浊酒一杯家万里，燕然未勒归无计，羌管悠悠霜满地。人不寐，将军白发征夫泪。
+		<br />
+			《钗头凤·红酥手》
+		年代: 宋 作者: 陆游
+		红酥手，黄縢酒，满城春色宫墙柳。东风恶，欢情薄。一怀愁绪，几年离索。错、错、错。
+		春如旧，人空瘦，泪痕红浥鲛绡透。桃花落，闲池阁。山盟虽在，锦书难托。莫、莫、莫！
+		<br />
+			《桃花庵歌》
+		年代: 明 作者: 唐寅
+		桃花坞里桃花庵，桃花庵下桃花仙；
+		桃花仙人种桃树，又摘桃花卖酒钱。
+		酒醒只在花前坐，酒醉换来花下眠；
+		半醒半醉日复日，花落花开年复年。
+		但愿老死花酒间，不愿鞠躬车马前；
+		车尘马足富者趣，酒盏花枝贫者缘。
+		若将富贵比贫贱，一在平地一在天；
+		若将贫贱比车马，他得驱驰我得闲。
+		别人笑我忒疯癫，我笑别人看不穿；
+		不见五陵豪杰墓，无花无酒锄做田。
+		<br />
+			<!--《浣溪沙》
+		年代: 宋 作者: 苏轼
+		软草平莎过雨新，轻沙走马路无尘，何时收拾耦耕身？
+		日暖桑麻光似泼，风来蒿艾气如熏，使君原是此中人。
+		<br />
+			《长相思·晴也行》
+		年代: 宋 作者: 无名氏
+		晴也行。雨也行。雨也行时不似晴。天晴终快人。名也成。利也成。利也成时不似名。名成天下惊。
+		<br />
+			《渔家傲·塞下秋来风景异》
+		年代: 宋 作者: 范仲淹
+		塞下秋来风景异，衡阳雁去无留意。四面边声连角起。千嶂里，长烟落日孤城闭。
+		浊酒一杯家万里，燕然未勒归无计，羌管悠悠霜满地。人不寐，将军白发征夫泪。
+		<br />
+			《钗头凤·红酥手》
+		年代: 宋 作者: 陆游
+		红酥手，黄縢酒，满城春色宫墙柳。东风恶，欢情薄。一怀愁绪，几年离索。错、错、错。
+		春如旧，人空瘦，泪痕红浥鲛绡透。桃花落，闲池阁。山盟虽在，锦书难托。莫、莫、莫！
+		<br />-->
+			<div class="contralBox ">
+				<div class="contralBtn bigBtn js-bigBtn" >+</div>
+				<div class="contralBtn numberBtn js-numberBtn" >16</div>
+				<div class="contralBtn smallBtn js-smallBtn">-</div>
+				<div class="white color js-boxColor"></div>
+				<div class="gray color js-boxColor"></div>
+				<div class="yellow color js-boxColor"></div>
+				<div class="green color js-boxColor"></div>
+				<div class="blue color js-boxColor"></div>
+			</div>
+		</div>
+		
+		 
+		<script src="jquery.min.js"></script>
+		<script type="text/javascript">
+			function Page() {
+				//构造函数
+			}
+			$.extend(Page.prototype,{
+				init: function() {
+					this.bindEvents();
+				},
+				
+				bindEvents: function() {
+					var bigBtn = $(".js-bigBtn");
+					var smallBtn = $(".js-smallBtn");
+					var boxColor = $(".js-boxColor");
+					bigBtn.on( "click",$.proxy( this.handleBigBtnClick, this ) );
+					smallBtn.on( "click",$.proxy( this.handleSmallBtnClick, this ) );
+					boxColor.on( "click",$.proxy(this.handleBoxColorClick,this) ) 
+				},
+				
+				handleBigBtnClick: function() {
+					var numberVal = parseInt( $(".js-numberBtn").html() );
+					$(".js-numberBtn").html(numberVal+1) 
+					var fontSize = numberVal+1;
+					window.localStorage.fontSize = fontSize; 
+					var contentBox = $(".js-contentBox");
+					var newSize = parseInt( window.localStorage.fontSize );
+					contentBox.css("font-size",newSize);
+				},
+				
+				handleSmallBtnClick: function(){
+					var numberVal = parseInt( $(".js-numberBtn").html() );
+					$(".js-numberBtn").html(numberVal-1);
+					var fontSize = numberVal-1;
+					window.localStorage.fontSize = fontSize; 
+					var contentBox = $(".js-contentBox");
+					var newSize = parseInt( window.localStorage.fontSize );
+					contentBox.css("font-size",newSize);
+				},
+				
+				handleBoxColorClick: function(e){
+					var color = $(e.target).css("background-color");
+					var s =  $(".js-contentBox").css("line-height") ;
+					alert( s )
+					var backgroundColor =  window.localStorage.background = color; 
+					$(".js-contentBox").css("background-color",backgroundColor)
+				}
+				
+				
+				
+			})
+			
+			var page = new Page();
+			page.init();
+		</script>
+		
+		
+		
+		
+		
+
+	</body>
+</html>
