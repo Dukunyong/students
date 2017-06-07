@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> 移动端视频播放 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" type="text/css" rel="stylesheet">
+    <link type="text/css" href="https://at.alicdn.com/t/font_9s1qwai126clq5mi.css" rel="stylesheet"/>
+
+    <style>
+        video{
+            width: 100%;
+            height: auto;
+        }
+
+        article{
+            background: indianred;
+            width: 100%;
+            height: 10rem;
+        }
+
+        ul,ol,li{
+            list-style: none;
+        }
+        .am-header{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header data-am-widget="header"
+        class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <a href="#" class="">
+            <i class="">HOME</i>
+        </a>
+    </div>
+
+    <h1 class="am-header-title">
+        <a href="#" class="" style="position: absolute;left: 80vw;top: 0vw;">
+            <i class="iconfont icon-search"></i>
+        </a>
+    </h1>
+
+    <div class="am-header-right am-header-nav">
+        <a href="#" class="">
+            <i class="am-header-icon am-icon-bars"></i>
+        </a>
+    </div>
+</header>
+
+<section class="am-header am-header-default">
+
+            <i class="am-header-icon am-icon-home"></i>
+
+            <i class="am-header-icon am-icon-phone"></i>
+
+            <i class="am-header-icon am-icon-user"></i>
+
+            <i class="am-header-icon am-icon-shopping-cart"></i>
+
+</section>
+
+
+<video src="show.mp4" class="video">
+
+</video>
+
+<article>
+    Xi: China willing to cooperate in space exploration
+    President Xi Jinping sends a letter of congratulations to
+    the Global Space Exploration Conference, which opened Tuesday in Beijing.
+</article>
+
+<script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+<script>
+    function Video (){
+        this.video = $(".video")[0];
+    }
+
+    $.extend(Video.prototype = {
+            init: function (){
+                this.bindEvents();
+            },
+
+            bindEvents: function(){
+                var video = $(".video");
+
+                video.on("click", $.proxy(this.videoPlayClick,this));
+            },
+
+            videoPlayClick: function(){
+                flag = true;
+                if( flag ){
+                    this.video.play();
+                    flag = false;
+                }else if( flag==false ){
+                    this.video.pause();
+                    flag = true;
+                }
+
+            }
+        }
+    )
+
+    var video = new Video();
+    video.init();
+</script>
+</body>
+</html>

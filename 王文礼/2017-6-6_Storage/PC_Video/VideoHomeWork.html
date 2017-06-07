@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> PC端 video视频播放 </title>
+    <style>
+        body{
+            background: darkgray;
+        }
+        #video_stage{
+            width: 600px;
+            height: 300px;
+            margin:100px 50px;
+            box-shadow: 0 0 20px black;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div id="video_stage" >
+    <video src="show.mp4" controls="controls" width="600" height="250" preload="auto" class="play" poster="videoLoad.jpg" muted="muted">
+        <source src="movie.ogg" type="video/ogg">
+        <source src="movie.mp4" type="video/mp4">
+        <source src="movie.webm" type="video/webm">
+        中文：你就用这个浏览器有出息吗？
+        English: Your browser does not support the video tag.
+    </video>
+
+    <button class="videoPlayBtn">播放</button>
+    <button class="videoPauseBtn">暂停</button>
+    <button class="videoVolumnBtn">静音</button>
+    音量：<input type="range" value="音量控制" class="videoVolumeRangeChange" step="0.1" max="1" min="0" />
+    进度：<input type="range" value="播放进度" class="videoRangeChange" step="0.1" max="1" min="0" />
+    <button type="button" class="screenBtn">全屏</button>
+
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+</body>
+</html>
+<script>
+    function Video (){
+       this.video = $(".play")[0];
+    }
+
+    $.extend(
+        Video.prototype = {
+        //方法
+        init: function(){
+            this.bindEvents();
+        },
+
+        bindEvents: function (){
+            var playBtn = $(".videoPlayBtn");
+            var pauseBtn = $(".videoPauseBtn");
+            var volumeBtn = $(".videoVolumnBtn");
+            var RangeChange = $(".videoVolumeRangeChange");
+            var VideoChange = $(".videoRangeChange");
+            var ScreenBtn = $(".screenBtn");
+
+            //$.proxy方法的使用：改变this的指向
+            playBtn.on("click", $.proxy(this.handlePlayBtnClick,this));
+            pauseBtn.on("click", $.proxy(this.handlePauseBtnClick,this));
+            volumeBtn.on("click", $.proxy(this.handlevolumeBtnClick,this));
+            RangeChange.on("change", $.proxy(this.handleVolumnRangeChange,this));
+            VideoChange.on("change", $.proxy(this.handleVideoChange,this));
+            ScreenBtn.on("click", $.proxy(this.handleScreenBtnClick,this));
+        },
+        //播放
+        handlePlayBtnClick: function (){
+            this.video.play();
+        },
+        //暂停
+        handlePauseBtnClick: function () {
+            this.video.pause();
+        },
+        //静音按钮
+        handlevolumeBtnClick: function (){
+            //this.video.muted = true;
+            if( this.video.muted ){
+                this.video.muted = false;
+            }else{
+                this.video.muted = true;
+            }
+        },
+
+        //音量控制条
+            handleVolumnRangeChange: function (event){
+            //alert(1);
+            var target = $(event.target);
+            this.video.volume = target.val();
+
+        },
+        //播放进度
+        handleVideoChange: function(event){
+            var target = $(event.target);
+            var totalTime = this.video.duration;
+            var value = target.val();
+            this.video.currentTime = totalTime*value;
+        },
+       //全屏
+            handleScreenBtnClick: function(){
+                this.launchFullscreen(this.video);
+            },
+            launchFullscreen: function (element){
+                //此方法不可以在异步任务中执行，否则火狐会出问题
+                if(element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if(element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                } else if(element.msRequestFullscreen){
+                    element.msRequestFullscreen();
+                } else if(element.oRequestFullscreen){
+                    element.oRequestFullscreen();
+                }else if(element.webkitRequestFullscreen){
+                    element.webkitRequestFullScreen();
+                }else{
+                    var docHtml = document.documentElement;
+                    var docBody = document.body;
+                    var videobox = document.getElementById('videobox');
+                    var cssText = 'width:100%;height:100%;overflow:hidden;';
+                    docHtml.style.cssText = cssText;
+                    docBody.style.cssText = cssText;
+                    videobox.style.cssText = cssText+';'+'margin:0px;padding:0px;';
+                    document.IsFullScreen = true;
+                }
+            },
+        //退出全屏
+            exitFullscreen: function (){
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if(document.oRequestFullscreen){
+                    document.oCancelFullScreen();
+                }else if (document.webkitExitFullscreen){
+                    document.webkitExitFullscreen();
+                }else{
+                    var docHtml = document.documentElement;
+                    var docBody = document.body;
+                    var videobox = document.getElementById('videobox');
+                    docHtml.style.cssText = "";
+                    docBody.style.cssText = "";
+                    videobox.style.cssText = "";
+                    document.IsFullScreen = false;
+                }
+            }
+    });
+
+
+    var video = new Video();
+    video.init();
+</script>
