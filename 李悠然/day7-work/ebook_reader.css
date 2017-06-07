@@ -1,0 +1,87 @@
+html,body,div,h1,h2,h3,h4,h5,h6,li,ul,ol,p,input,img,dl,dt,dd{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+ul li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+img{
+	border: 0;
+}
+html,body{
+	height: 100%;
+	font-weight: 200;
+}
+html{
+	font-size:26.67vw;
+}
+body{
+	font-size: 12px;
+}
+/*header*/
+body{
+	-display: flex;
+	-flex-direction: column;
+}
+.content{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+header{
+	display: none;
+	height: 0.45rem;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: yellow;
+}
+footer{
+	-display: none;
+	height: 0.65rem;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.3);
+}
+footer div{
+	display: flex;
+	justify-content: space-around;
+}
+footer div span{
+	display: block;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	float: left;
+}
+footer div span:nth-child(1){
+	background: yellow;
+}
+footer div span:nth-child(2){
+	background: green;
+}
+footer div span:nth-child(3){
+	background: blue;
+}
+footer div span:nth-child(4){
+	background: #36c;
+}
+footer div span:nth-child(5){
+	background: #fff;
+}
+section{
+	-flex: 1;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+section h2{
+
+}

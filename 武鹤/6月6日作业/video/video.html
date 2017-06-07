@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>video</title>
+	<style>
+		video{
+			width:80%;
+		}
+		div{
+			width:100%;
+		}
+	</style>
+</head>
+<body>
+	<video src="4.mp4" class="js-video" ></video>
+	<div>
+		<button class="js-playAndPauseBtn">开始</button>
+		进度<input type="range" class="js-process" value=0 style="width:400px">
+		<span class="js-currentspan">00:00</span>
+		<span class="js-videospan">/&nbsp;00:00</span>
+		音量<input type="range" class="js-volume" value=100 style="width:100px">
+		<button class="js-screenBtn">全屏</button>
+	</div>
+	
+
+	<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+	function Page(){
+		this.video = $(".js-video");
+	}
+
+	$.extend(Page.prototype,{
+		init:function(){
+			this.bindEvents();
+			this.playAndPauseFlag = true;
+			this.screenFlag = true;
+		},
+
+		bindEvents: function() {
+			var playAndPauseBtn = $(".js-playAndPauseBtn"),
+				volumeBar = $(".js-volume"),
+				prcessRange = $(".js-process"),
+				currentSpan = $(".js-currentspan"),
+				screenBtn = $(".js-screenBtn");
+
+			    playAndPauseBtn.on("click", $.proxy(this.handleplayAndPauseBtnClick, this));
+			    volumeBar.on("change", $.proxy(this.handleVolumeChange, this));
+			    prcessRange.on("change", $.proxy(this.handleProcessChange, this));
+			    screenBtn.on("click", $.proxy(this.handleScreenClick, this));
+			    $(this.video[0]).on("timeupdate", $.proxy(this.handleVideoTimeUpdated, this));
+				$(this.video[0]).on("loadedmetadata", $.proxy(this.handleCanplayTriggerd, this));
+				$(this.video[0]).on("ended", $.proxy(this.handleEndedTriggerd, this));
+				$(this.video[0]).on("dblclick", $.proxy(this.handleScreenToggle, this));
+		},
+
+		handleCanplayTriggerd: function(){
+			var duration = this.video[0].duration;
+			var str = "/";
+			var minutes = parseInt(duration/60) <10 ? "0" + parseInt(duration/60) : parseInt(duration/60);
+			var seconds = parseInt(duration - minutes*60) <10 ? "0" + parseInt(duration - minutes*60) : parseInt(duration - minutes*60);
+			str += minutes + ":" + seconds;
+			$(".js-videospan").text(str);
+		},
+
+		handleScreenToggle: function() {
+			if( this.screenFlag ){
+				this.screenFlag = false;
+				this.launchFullscreen(this.video[0]);
+			}else{
+				this.screenFlag = true;
+				this.exitFullscreen(this.video[0]);
+			}
+		},
+
+		handleEndedTriggerd: function() {
+			this.video[0].pause();
+			this.playAndPauseFlag = true;
+			$(".js-playAndPauseBtn").text("开始");
+			$(".js-process").val(0);
+		},
+
+		handleScreenClick: function() {
+			this.launchFullscreen( this.video[0] );
+		},
+
+		handleVideoTimeUpdated: function() {
+			var str = "";
+			var time = this.video[0].currentTime;
+			var minutes = parseInt(time/60) <10 ? "0" + parseInt(time/60) : parseInt(time/60);
+			var seconds = parseInt(time - minutes*60) <10 ? "0" + parseInt(time - minutes*60) : parseInt(time - minutes*60);
+			str = minutes + ":" + seconds;
+			$(".js-currentspan").text(str);
+			$(".js-process").val( time / this.video[0].duration *100 )
+			console.log(time / this.video[0].duration *100)
+		},
+
+		handleplayAndPauseBtnClick: function() {
+			if( this.playAndPauseFlag ){
+				this.video[0].play();
+				this.playAndPauseFlag = false;
+				$(".js-playAndPauseBtn").text("停止");
+			}else{
+				this.video[0].pause();
+				this.playAndPauseFlag = true;
+				$(".js-playAndPauseBtn").text("开始");
+			}
+		},
+
+		handleVolumeChange: function() {
+			// console.log($(".js-volume").val())
+			this.video[0].volume = $(".js-volume").val()/100;
+		},
+
+		handleProcessChange: function() {
+			var duration = this.video[0].duration;
+			// console.log(duration)
+			this.video[0].currentTime = $(".js-process").val() / 100 * duration;
+
+		},
+
+		launchFullscreen: function (element){
+		    //此方法不可以在异步任务中执行，否则火狐会出问题
+		    if(element.requestFullscreen) {
+		        element.requestFullscreen();
+		    } else if(element.mozRequestFullScreen) {
+		        element.mozRequestFullScreen();
+		    } else if(element.msRequestFullscreen){
+		        element.msRequestFullscreen();
+		    } else if(element.oRequestFullscreen){
+		        element.oRequestFullscreen();
+		    }else if(element.webkitRequestFullscreen){
+		        element.webkitRequestFullScreen();
+		    }else{
+		        var docHtml = document.documentElement;
+		        var docBody = document.body;
+		        var videobox = document.getElementById('videobox');
+		        var cssText = 'width:100%;height:100%;overflow:hidden;';
+		        docHtml.style.cssText = cssText;
+		        docBody.style.cssText = cssText;
+		        videobox.style.cssText = cssText+';'+'margin:0px;padding:0px;';
+		        document.IsFullScreen = true;
+		    }
+		},
+
+		//退出全屏
+		exitFullscreen: function (){
+		    if (document.exitFullscreen) {
+		        document.exitFullscreen();
+		    } else if (document.msExitFullscreen) {
+		        document.msExitFullscreen();
+		    } else if (document.mozCancelFullScreen) {
+		        document.mozCancelFullScreen();
+		    } else if(document.oRequestFullscreen){
+		        document.oCancelFullScreen();
+		    }else if (document.webkitExitFullscreen){
+		        document.webkitExitFullscreen();
+		    }else{
+		        var docHtml = document.documentElement;
+		        var docBody = document.body;
+		        var videobox = document.getElementById('videobox');
+		        docHtml.style.cssText = "";
+		        docBody.style.cssText = "";
+		        videobox.style.cssText = "";
+		        document.IsFullScreen = false;
+		    }
+		}
+
+
+
+
+
+	})
+
+	var page = new Page();
+	page.init();
+	</script>
+</body>
+</html>
