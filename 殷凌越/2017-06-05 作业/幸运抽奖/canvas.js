@@ -30,7 +30,6 @@ Canvas.prototype = {
 	dialRotate: function() {
 		this.ctx.save();
 		this.ctx.beginPath();
-		this.ctx.arc(250, 250, 250, 0, Math.PI*2)
 		var img =new Image();//创建图片标签
 		var this_=this;
 		img.onload = function(){

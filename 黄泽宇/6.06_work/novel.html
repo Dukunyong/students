@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		.d{
+			width:300px;
+			background:palegoldenrod;
+			margin:100px auto;
+			position: relative;
+		}
+		#p{
+			font-size: 16px;
+		}
+		.chose{
+			width:300px;
+			height:90px;
+			background: #ccc;
+			position: absolute;
+			bottom:-90px;
+		}
+		#add{
+			margin-left:100px;
+			margin-right:10px;
+		}
+		#minus{
+			margin-left:10px;
+		}
+		.colorbox{
+			margin-top:5px;
+			padding-left: 100px;
+		}
+		.colorbox div{
+			display: inline-block;
+			width:30px;
+			height:30px;
+			margin-right: 20px;
+		}
+		#lavender{
+			background:lavender;
+		}
+		#paleturquoise{
+			background:paleturquoise;
+		}
+		#save{
+			margin-left:80px;
+			margin-right: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="d js-div">
+		<p id="p">有很多这样的场景：需要分配一个函数对象的引用，以便在未来的某个时间执行该函数。那么闭包对于为这个将要执行的函数提供引用会非常有帮助。因为该函数可能直到执行时才能够被访问。有一个例子就是，一个javascript对象被封装用来参与一个特定DOM元素的交互。它有doOnClick、doMouseOver以及doMouseOut方法。并且想在DOM元素上对应的事件被触发时执行这些方法。但是，可能会有关联着DOM元素的任意数量的javascript对象被创建，并且单个的实例并不知道那些实例化它们的代码将如何处理它们。对象实例不知道怎样去“全局”地引用它们自己，因为它们不知道哪个全局变量(如果存在)的引用将被分配给它们。所以，问题是执行一个与特定javascript对象实例关联的事件处理函数，并且知道调用那个对象的哪个方法。接下来的一个例子，在有元素事件处理的对象实例的关联函数上使用一个简单的闭包。通过传递event对象以及要关联元素的一个引用，为事件处理器分配不同的对象实例方法以供调用。</p>
+	<div class="chose">
+		<button id="add">+</button>
+		<span id="fontsize">16</span>
+		<button id="minus">-</button>
+		<div class="colorbox js-colorbox">
+			<div id="lavender"></div>
+			<div id="paleturquoise"></div>
+		</div>
+		<button id="save">存储</button>
+		<button id="clear">清除</button>
+	</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<script type="text/javascript">
+		function Page() {
+			
+		}
+		$.extend(Page.prototype, {
+			init: function() {
+				this.restoreSizecolor();
+				this.bindEvents();
+			},
+			
+			restoreSizecolor: function() {
+				try{
+					if(window.localStorage){
+						var sizeColor = {};
+						if(window.localStorage.sizeColor){
+							var  sizeColor = JSON.parse(window.localStorage.sizeColor)
+						}
+						if(sizeColor.size){
+							$("#p").css("font-size",sizeColor.size);
+							$("#fontsize").text(parseInt(sizeColor.size));
+						}
+						if(sizeColor.color){
+							$(".js-div").css("background",sizeColor.color);
+						}
+					}
+				}catch(e){}
+			},
+			
+			bindEvents: function() {
+				var addBtn = $("#add");
+				var minusBtn = $("#minus");
+				var colorOne = $("#lavender");
+				var colorTwo = $("#paleturquoise");
+				var saveBtn = $("#save");
+				var clearBtn = $("#clear");
+				addBtn.on("click",$.proxy(this.handleAddClick,this));
+				minusBtn.on("click",$.proxy(this.handleMinusClick,this));
+				colorOne.on("click",$.proxy(this.handleColorOneClick,this));
+				colorTwo.on("click",$.proxy(this.handleColorTwoClick,this));
+				saveBtn.on("click",$.proxy(this.handleSaveBtnClick,this));
+				clearBtn.on("click",$.proxy(this.handleClearBtnClick,this));
+			},
+			
+			handleSaveBtnClick: function() {
+				var sizeColor = {
+					size: $("#p").css("font-size"),
+					color: $(".js-div").css("background")
+				};
+				sizeColor = JSON.stringify(sizeColor);
+				window.localStorage.sizeColor = sizeColor;
+				
+				//假如请求成功
+				try{
+					if(window.localStorage){
+						window.localStorage.sizeColor = sizeColor;
+					}
+				}catch(e){}
+			},
+			
+			handleAddClick: function() {
+				var fontSize = $("#fontsize").text();
+				fontSize++;
+				if(fontSize >= 20){
+					fontSize = 20;
+				}
+				$("#fontsize").text(fontSize);
+				$("#p").css("font-size",fontSize);
+			},
+			
+			handleMinusClick: function() {
+				var fontSize = $("#fontsize").text();
+				fontSize--;
+				if(fontSize <= 12){
+					fontSize = 12
+				}
+				$("#fontsize").text(fontSize);
+				$("#p").css("font-size",fontSize);
+			},
+			
+			handleColorOneClick: function() {
+				bgColor = $("#lavender").css("background");
+				$(".js-div").css("background",bgColor);
+				
+			},
+			
+			handleColorTwoClick: function() {
+				bgColor = $("#paleturquoise").css("background");
+				$(".js-div").css("background",bgColor);
+				
+			},
+			
+			handleClearBtnClick: function() {
+				try{
+					if(window.localStorage){
+						window.localStorage.clear();
+					}
+				}catch(e){}
+			}
+		});
+		
+		var page = new Page();
+		page.init();
+	</script>
+</body>
+</html>

@@ -135,7 +135,9 @@ function newCanvas(canvas) {
 	this.canvas = canvas;
 }
 
+
 inherit(newCanvas, Canvas);
+newCanvas.prototype =Canvas.prototype;
 
 newCanvas.prototype.drawSecond = function() {
 	this.ctx.save();

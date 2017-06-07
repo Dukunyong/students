@@ -1,0 +1,61 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	font-size: 26.67vw;
+}
+
+.header{
+	width:100%;
+	height:0.9rem;
+	background: red;
+}
+
+.content{
+	width:100%;
+	height:2.5rem;
+	background:#fff;
+	border-bottom:0.01rem solid #ccc;
+	position: relative;
+}
+
+.video{
+	width:3.5rem;
+	/*height:2.17rem;*/
+	margin-top:0.13rem;
+	margin-left:0.13rem;
+}
+.massage{
+	width:3.5rem;
+	height:0.65rem;
+	margin-left:0.13rem;
+	padding-left:0.2rem;
+	display: flex;
+	flex-direction: row;
+	box-sizing: border-box;
+}
+.imgbox{
+	width:0.4rem;
+	height:0.4rem;
+	background: url(1.png) no-repeat center center;
+	background-size:0.4rem ;
+	margin-right:0.1rem;
+}
+
+.massage p{
+	font-size: 0.14rem;
+	color:#666;
+}
+
+.time{
+	width:0.5rem;
+	height:0.2rem;
+	font-size: 0.14rem;
+	background:#ccc;
+	color:#fff;
+	text-align: center;
+	position: absolute;
+	bottom:0.9rem;
+	right:0.19rem;
+}
