@@ -113,14 +113,14 @@ footer .handleFontSize li:hover span{
 }
 
 
-footer .handleColorChange{
+footer .handleColorChangeBtn{
 	width:100%;
 	height:50%;
 	display: flex; 
 	justify-content: space-around;
 	align-items:center;
 }
-footer .handleColorChange li{
+footer .handleColorChangeBtn li{
 	display:flex;
 	height:60%;
 	width:8.5%;
@@ -132,25 +132,25 @@ footer .handleColorChange li{
 	border: 0.01rem solid #ccc;
     transition: all .3s cubic-bezier(0.35,0.2,0.55,1.0);
 } 
-footer .handleColorChange li:hover{
+footer .handleColorChangeBtn li:hover{
 	transform:scale(0.7);  
 }
-footer .handleColorChange .faf6ed{
+footer .handleColorChangeBtn .faf6ed{
 	box-shadow: 0 0 0.25rem 0.05rem #faf6ed inset;
 
 }
-footer .handleColorChange .orange{
+footer .handleColorChangeBtn .orange{
 	box-shadow: 0 0 0.25rem 0.05rem orange inset;
 }
-footer .handleColorChange .deeppink{
+footer .handleColorChangeBtn .deeppink{
 	box-shadow: 0 0 0.25rem 0.05rem deeppink inset;
 }
-footer .handleColorChange .green{
+footer .handleColorChangeBtn .green{
 	box-shadow: 0 0 0.25rem 0.05rem green inset;
 }
-footer .handleColorChange .blue{
+footer .handleColorChangeBtn .blue{
 	box-shadow: 0 0 0.25rem 0.05rem blue inset;
 }
-footer .handleColorChange .cyan{
+footer .handleColorChangeBtn .cyan{
 	box-shadow: 0 0 0.25rem 0.05rem cyan inset;
 }
