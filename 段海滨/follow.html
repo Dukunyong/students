@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.area {
+				margin:0 auto;
+				width:1000px;
+				height:1000px;
+				border:1px solid red;
+				background: green;
+				position: relative;
+			}
+			.box {
+				width:100px;
+				height:100px;
+				background:cyan;
+				position: absolute;
+				left:100px;
+				top:100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="area js-area">
+			<div class="box js-box">
+				
+			</div>
+		</div>
+		
+		<script src="http://zeptojs.com/zepto.js"></script>
+		<script type="text/javascript">
+			 function Page() {
+			 	this.box = $(".js-box");
+			 }
+			 $.extend(Page.prototype,{
+			 	init: function() {
+			 		this.bindEvents();
+			 		
+			 		
+//					this.box = $(".js-box")[0]为什么不行;
+			 	},
+			 	
+			 	bindEvents: function() {
+//			 		var area = $(".js-area");
+//			 		var box = $(".js-box");
+			 		this.box.on("touchstart",$.proxy(this.handleBoxTouchstart,this));
+//			 		box.on("changeTouches",$.proxy(this.handleBoxChangeTouches,this));
+			 		this.box.on("touchmove",$.proxy(this.handleBoxTouchMove,this));
+			 	},
+			 	
+			 	handleBoxTouchstart: function(e) {
+			 		var target = e.target;
+			 		var touchX = e.touches[0].pageX;
+			 		var touchY = e.touches[0].pageY;
+			 		var boxX = target.offsetLeft;
+			 		var boxY = target.offsetTop;
+			 		this.relativeBoxX = touchX - boxX;
+			 		this.relativeBoxY = touchY - boxY;
+//			 	
+			 	},
+			 	
+			 	handleBoxTouchMove: function(e) {
+			 		console.log(e);
+			 		var touchX = e.touches[0].pageX;
+			 		var touchY = e.touches[0].pageY;
+			 		var x =touchX - this.relativeBoxX ;
+			 		var y =touchY - this.relativeBoxY ;
+			 		this.box.offset({
+			 			"left": x,
+			 			"top": y
+			 		})
+			 	}
+			 	
+			 	
+			 })
+			 var page = new Page();
+			 page.init();
+		</script>
+	</body>
+</html>
