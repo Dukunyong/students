@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		</style>
+	</head>
+	<body>
+		<center>
+		<canvas width="224" height="224" id="canvas" style="border: 1px solid #000;">
+		</canvas>
+		<script>
+			var canvas=document.querySelector("#canvas");
+			var context=canvas.getContext("2d");
+			
+//			canvas.style.width="224px";
+//			canvas.style.height="224px";
+			context.fillStyle="#ccc";
+			canvas.style.backgroundImage='url(song.jpeg)';
+			context.globalCompositeOperation = "destination-over";
+			context.beginPath();
+			context.fillRect(0,0,224,224);
+			context.closePath();
+			canvas.onmousemove=function(e){
+				var x=e.clientX-canvas.offsetLeft;
+				var y=e.clientY-canvas.offsetTop;
+				context.globalCompositeOperation = "destination-out"
+				context.beginPath();
+				context.fillStyle="white";
+				context.arc(x,y,10,0,2*Math.PI,true);
+				context.fill();
+				context.closePath();
+			}
+		</script>
+		</center>
+	</body>
+</html>
