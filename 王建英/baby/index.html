@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=640, user-scalable=no">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="http://www.swiper.com.cn/dist/css/swiper.min.css">
+    <link rel="stylesheet" href="http://www.swiper.com.cn/dist/css/animate.min.css">
+
+    <!-- Demo styles -->
+    <style>
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .page-index{
+        background: #fff;
+        position: relative;
+    }
+    .index-bg{
+        position: absolute;
+        top:25%;
+        left:50%;
+        -webkit-transform: translate(-50%,-30%);
+        -moz-transform: translate(-50%,-30%);
+        -ms-transform: translate(-50%,-30%);
+        transform: translate(-50%,-30%);
+    }
+    .index-left{
+        position: absolute;
+        bottom:0;
+        left:0;
+    }
+     .index-right{
+        position: absolute;
+        bottom:0;
+        right:0;
+    }
+    .index-bottom{
+        position: absolute;
+        bottom:0;
+        left:50%;
+        margin-left: : -21px;
+    }
+    .page-second{
+       background: #fff;
+    }
+
+   
+    </style>
+</head>
+<body>
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide page-index">
+                <img src="img/img1.jpg" class="index-bg  ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.3s" width="100%">
+
+                <img src="img/img4.png" class="index-left  ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="1.5s" swiper-animate-delay="0.3s" width="25%">
+
+                <img src="img/img5.png" class="index-right  ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="1.5s" swiper-animate-delay="0.3s" width="25%" >
+
+                <img src="img/img3.png" class="index-bottom ani infinite" swiper-animate-effect="fadeOutUp" swiper-animate-duration="1s" swiper-animate-delay="1s" >
+            </div>
+            <div class="swiper-slide page-second ">
+                <img src="img/img6.jpg" class="ani" swiper-animate-effect="rubberBand" swiper-animate-duration="1s" swiper-animate-delay="1s" width="100%" height="100%" >
+
+            </div>
+            <!-- <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div> -->
+            
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="http://zeptojs.com/zepto.min.js"></script>
+    <script src="http://www.swiper.com.cn/dist/js/swiper.min.js"></script>
+    <script src="http://www.swiper.com.cn/dist/js/swiper.animate.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+    function Page() {
+
+    }
+
+    $.extend(Page.prototype,{
+        init: function() {
+            this.makeSwiper();
+        },
+
+        makeSwiper: function() {
+            new Swiper('.swiper-container', {
+                    
+                    direction: 'vertical',
+                    onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit
+                      
+                        swiperAnimateCache(swiper); //隐藏动画元素 
+                        swiperAnimate(swiper); //初始化完成开始动画
+                    },
+                    //重新进入页面时，也运行动画
+                    onSlideChangeEnd: function(swiper){ 
+
+                        swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+                    } 
+                });
+
+        }
+    })
+    var page = new Page();
+        page.init();
+        
+    </script>
+    <!-- 背景音乐开始 -->
+      <audio  src="http://cc.stream.qqmusic.qq.com/C100001TqDdv4QWZqb.m4a?fromtag=52" id="audio_play" class="audio" loop></audio>
+
+</body>
+</html>
