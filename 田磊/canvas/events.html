@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.js-area{
+				width: 500px;
+				height: 500px;
+				text-align: center;
+				margin:  0 auto;
+				font-size: 40px;
+				border: 1px solid gray;
+				line-height: 500px;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="js-area">evevt test</div>
+		<script src="jquery-1.11.3.js"></script>
+		<script src="fastclick.js"></script>
+	</body>
+</html>
+<script>
+	function Page(e) {
+		
+	};
+	
+	$.extend(Page.prototype,{
+		init: function() {
+			//this.useFastClick();
+			this.bindEvents();
+		},
+		
+		//useFastClick:function() {
+			//300毫秒(click 与  touchstart)
+		//	FastClick.attach(document.body);
+		//},
+		
+		bindEvents: function() { 
+			var area = $(".js-area");
+				
+			area.on("touchstart",$.proxy(this.handleAreaTouchStart,this));
+			area.on("click",$.proxy(this.handleAreaClick,this));
+		},
+		
+		handleAreaTouchStart: function(e) {
+		
+			var touches = event.targetTouches[0];
+			var area = $(".js-area");
+			this.x = touches.clientX - e.target.offsetLeft;
+			this.y = touches.clientY - e.target.offsetTop;
+			area.on("touchmove",$.proxy(this.handleAreaTouchMove,this));
+			area.on("touchend",$.proxy(this.handleAreaTouchEnd,this));
+		},
+		
+		handleAreaTouchMove: function(e) {
+			var touches = event.targetTouches[0];
+			var cw = document.documentElement.clientWidth||document.body.clientWidth;
+			var ch = document.documentElement.clientHeight||document.body.clientHeight;
+			var _x = touches.clientX - this.x;
+			var _y = touches.clientY - this.y;
+			if(_x < 0){
+				_x = 0
+			}
+			if(_x > cw - e.target.offsetWidth){
+				_x = cw - e.target.offsetWidth
+			}
+			if(_y < 0){
+				_y = 0
+			}
+			if(_y > ch - e.target.offsetHeight){
+				_y = ch - e.target.offsetHeight
+			}
+			e.target.style.left = _x + "px";
+			e.target.style.top = _y + "px";
+		},
+		
+		handleAreaTouchEnd: function (e) {
+			var area = $(".js-area");
+			//console.log(e.target);输出js-area div  当前出发事件的div 事件冒泡
+			//console.log(e.currentTarget); 输出js-wai div 
+			area.on("touchstart",null);
+			area.on("touchmove",null);
+		},
+		
+		/*handleAreaClick: function(e) {
+			if(!e.fastclick){
+			
+			}
+		}*/
+	});
+	
+	var page = new Page();
+	page.init();
+</script>
